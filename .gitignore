@@ -219,4 +219,5 @@ artifacts/
 
 #CodeCoverage
 **/CodeCoverage/*
+!**/CodeCoverage/CodeCoverage.cmd
 /Spritey.Coverage.xml
