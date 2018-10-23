@@ -13,6 +13,6 @@ tests\CodeCoverage\OpenCover.4.6.519\tools\OpenCover.Console.exe -target:"dotnet
 
 if %errorlevel% neq 0 exit /b %errorlevel%
 
-tests\CodeCoverage\Codecov.1.1.0\tools\codecov.exe -f Spritey.Coverage.xml
+tests\CodeCoverage\Codecov.1.1.0\tools\codecov.exe -f Spritey.Coverage.xml -t %CODECOV_TOKEN%
 
 pause
