@@ -22,4 +22,4 @@ before_build:
 build_script:
   - cmd: dotnet build ./src/Spritey/Spritey.csproj
 test_script:
-  - cmd: .\tests\CodeCoverage\CodeCoverage.cmd
+  - cmd: cd .\tests\CodeCoverage\ && CodeCoverage.cmd
