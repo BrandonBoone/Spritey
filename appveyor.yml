@@ -1,0 +1,27 @@
+version: 1.0.0.{build}
+image: Visual Studio 2017
+
+# prevent the double build when a branch has an active PR
+skip_branch_with_pr: true
+
+branches:
+  only:
+  - master
+init:
+  # Good practise, because Windows line endings are different from Unix/Linux ones
+  - cmd: git config --global core.autocrlf true
+environment:
+  matrix:
+    - target_framework: netcoreapp2.1
+      is_32bit: False
+before_build:
+  # Display .NET Core version
+  - cmd: dotnet --version
+  # Display minimal restore text
+  - cmd: dotnet restore ./src/Spritey.csproj --verbosity m
+build_script:
+  - cmd: dotnet build ./src/Spritey.csproj
+test_script:
+  - cmd: dotnet restore ./tests/Spritey.Test.csproj --verbosity m
+  - cmd: .\tests\CodeCoverage\CodeCoverage.cmd
+
