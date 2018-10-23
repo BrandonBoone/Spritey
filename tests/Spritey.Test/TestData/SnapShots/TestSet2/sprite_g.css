@@ -1,0 +1,10 @@
+.img-sprite{background: transparent url(sprite.gif);}
+i.img-sprite{display:inline-block;}
+.img-sprite.img-img1{height:100px;width:100px;background-position: -0px -0px;}
+.img-sprite.img-img2{height:100px;width:100px;background-position: -0px -100px;}
+.img-sprite.img-img3{height:100px;width:100px;background-position: -0px -200px;}
+.img-sprite.img-img4{height:100px;width:100px;background-position: -0px -300px;}
+.img-sprite.img-img1-2{height:50px;width:50px;background-position: -0px -400px;}
+.img-sprite.img-img2-2{height:50px;width:50px;background-position: -50px -400px;}
+.img-sprite.img-img3-3{height:50px;width:50px;background-position: -0px -450px;}
+.img-sprite.img-img4-4{height:50px;width:50px;background-position: -50px -450px;}

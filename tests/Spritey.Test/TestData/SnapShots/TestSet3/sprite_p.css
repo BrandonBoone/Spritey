@@ -1,0 +1,7 @@
+.img-sprite{background: transparent url(sprite.png);}
+i.img-sprite{display:inline-block;}
+.img-sprite.img-img1{height:100px;width:100px;background-position: -0px -0px;}
+.img-sprite.img-img2{height:100px;width:100px;background-position: -100px -0px;}
+.img-sprite.img-img1-2{height:50px;width:50px;background-position: -200px -0px;}
+.img-sprite.img-img2-2{height:50px;width:50px;background-position: -200px -50px;}
+.img-sprite.img-odd{height:30px;width:75px;background-position: -250px -0px;}

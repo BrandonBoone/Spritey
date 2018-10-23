@@ -1,0 +1,46 @@
+MIT License (exceptions stated below)
+
+Copyright (c) 2018 Brandon Boone
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+CPOL 1.02
+
+The following Code taken From: http://www.codeproject.com/Articles/210979/Fast-optimizing-rectangle-packing-algorithm-for-bu
+
+Protected for fair use under the - The Code Project Open License (CPOL) http://www.codeproject.com/info/cpol10.aspx
+
+- .\src\Spritey\ImageProcessing\CompositeMapping\CanvasStats.cs
+- .\src\Spritey\ImageProcessing\CompositeMapping\Canvas.cs
+- .\src\Spritey\ImageProcessing\CompositeMapping\ICanvas.cs
+- .\src\Spritey\ImageProcessing\CompositeMapping\ICanvasStats.cs
+- .\src\Spritey\ImageProcessing\CompositeMapping\DynamicTwoDimensionalArray.cs
+- .\src\Spritey\ImageProcessing\CompositeMapping\IImageInfo.cs
+- .\src\Spritey\ImageProcessing\CompositeMapping\IMappedImageInfo.cs
+- .\src\Spritey\ImageProcessing\CompositeMapping\IMapper.cs
+- .\src\Spritey\ImageProcessing\CompositeMapping\IMapperReturningStats.cs
+- .\src\Spritey\ImageProcessing\CompositeMapping\IMapperStats.cs
+- .\src\Spritey\ImageProcessing\CompositeMapping\ISprite.cs
+- .\src\Spritey\ImageProcessing\CompositeMapping\MappedImageInfo.cs
+- .\src\Spritey\ImageProcessing\CompositeMapping\MapperHorizontalOnly.cs
+- .\src\Spritey\ImageProcessing\CompositeMapping\MapperOptimalEfficiency.cs
+- .\src\Spritey\ImageProcessing\CompositeMapping\MapperOptimalEfficiency_Base.cs
+- .\src\Spritey\ImageProcessing\CompositeMapping\MapperStats.cs
+- .\src\Spritey\ImageProcessing\CompositeMapping\MapperVerticalOnly.cs
