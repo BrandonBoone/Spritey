@@ -18,10 +18,10 @@ before_build:
   # Display .NET Core version
   - cmd: dotnet --version
   # Display minimal restore text
-  - cmd: dotnet restore ./src/Spritey.csproj --verbosity m
+  - cmd: dotnet restore ./src/Spritey/Spritey.csproj --verbosity m
 build_script:
-  - cmd: dotnet build ./src/Spritey.csproj
+  - cmd: dotnet build ./src/Spritey/Spritey.csproj
 test_script:
-  - cmd: dotnet restore ./tests/Spritey.Test.csproj --verbosity m
+  - cmd: dotnet restore ./tests/Spritey.Test/Spritey.Test.csproj --verbosity m
   - cmd: .\tests\CodeCoverage\CodeCoverage.cmd
 
