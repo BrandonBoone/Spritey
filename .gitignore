@@ -220,4 +220,5 @@ artifacts/
 #CodeCoverage
 **/CodeCoverage/*
 !**/CodeCoverage/CodeCoverage.cmd
+!**/CodeCoverage/packages.config
 /Spritey.Coverage.xml
