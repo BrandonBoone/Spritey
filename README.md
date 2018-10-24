@@ -1,12 +1,16 @@
-![logo](./docs/Spritey.png)
+<h1 align="center">
+    <img src="https://raw.githubusercontent.com/BrandonBoone/Spritey/master/docs/Spritey.png" alt="Spritey" width="256" />
+    <br />
+    Spritey
+</h1>
 
 ## About
 
 While sprites may not be in vogue anymore and ~~font~~ svg based icon libraries are all the rage, css based sprites still have their place (*i think*), so why not implement yet another sprite generator in .NET Core.
 
-Spritey is a sprite generator. It takes a directory of images and converts them to an optomially packed rectangle, outputting a css embedded or referenced `gif` or `png` as well as the accompanying css stylesheet.
+Spritey is a sprite generator. It takes a directory of images and converts them to an optimally packed rectangle, outputting a css embedded or referenced `gif` or `png` as well as the accompanying css stylesheet.
 
-While the generaged `gif` is substantially smaller than the `png`, it suffers from quality degredation, especially if the source images vary in style (colors / complexity). The output should always be checked for quality.
+While the generated `gif` is substantially smaller than the `png`, it suffers from quality degradation, especially if the source images vary in style (colors / complexity). The output should always be checked for quality.
 
 ## Goal
 
