@@ -4,8 +4,6 @@
     Spritey
 </h1>
 
-## About
-
 While sprites may not be in vogue anymore and ~~font~~ svg based icon libraries are all the rage, css based sprites still have their place (*i think*), so why not implement yet another sprite generator in .NET Core.
 
 Spritey is a sprite generator. It takes a directory of images and converts them to an optimally packed rectangle, outputting a css embedded or referenced `gif` or `png` as well as the accompanying css stylesheet.
