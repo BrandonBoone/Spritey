@@ -13,6 +13,12 @@ While the generated `gif` is substantially smaller than the `png`, it suffers fr
 
 The end goal of this project is to produce both a .NET Core NuGet library for consuming apps, as well as a .NET Core Global Tool for CLI sprite generation.
 
+### Build Status
+
+|             |Build Status|Code Coverage|
+|-------------|:----------:|:-----------:|
+|**Windows**  |[![Build status](https://ci.appveyor.com/api/projects/status/a9bv92ullov5mi3v?svg=true)](https://ci.appveyor.com/project/BrandonBoone/spritey)|[![codecov](https://codecov.io/gh/BrandonBoone/Spritey/branch/master/graph/badge.svg)](https://codecov.io/gh/BrandonBoone/Spritey)|
+
 ### API
 
 #### Option 1
@@ -71,12 +77,6 @@ using (Sprite sprite = new Sprite(directoryOfImages))
     sprite.Save("spriteName", outputDirectory);
 }
 ```
-
-### Build Status
-
-|             |Build Status|Code Coverage|
-|-------------|:----------:|:-----------:|
-|**Windows**  |[![Build status](https://ci.appveyor.com/api/projects/status/a9bv92ullov5mi3v?svg=true)](https://ci.appveyor.com/project/BrandonBoone/spritey)|[![codecov](https://codecov.io/gh/BrandonBoone/Spritey/branch/master/graph/badge.svg)](https://codecov.io/gh/BrandonBoone/Spritey)|
 
 ### Getting started
 
