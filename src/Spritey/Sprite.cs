@@ -71,32 +71,32 @@
         /// <param name="directory">The file directory to output the sprite artifacts</param>
         public void Save(string name, string directory)
         {
-            this.Save(SpriteFormat.Gif, true, name, directory);
-            this.Save(SpriteFormat.Png, true, name, directory);
-            this.Save(SpriteFormat.Gif, false, name, directory);
-            this.Save(SpriteFormat.Png, false, name, directory);
+            this.Save(name, directory, true, SpriteFormat.Gif);
+            this.Save(name, directory, true, SpriteFormat.Png);
+            this.Save(name, directory, false, SpriteFormat.Gif);
+            this.Save(name, directory, false, SpriteFormat.Png);
         }
 
         /// <summary>
         /// Save the sprite in both <see cref="SpriteFormat.Gif"/> and <see cref="SpriteFormat.Png"/>
         /// </summary>
-        /// <param name="isSpriteEmbedded">true, the Sprite is Base64 encoded as a data uri within the css file. false the sprite is saved as a referenced image file.</param>
         /// <param name="name">The name to use when creating sprite artifacts (css, gif, and png files)</param>
         /// <param name="directory">The file directory to output the sprite artifacts</param>
-        public void Save(bool isSpriteEmbedded, string name, string directory)
+        /// <param name="isSpriteEmbedded">true, the Sprite is Base64 encoded as a data uri within the css file. false the sprite is saved as a referenced image file.</param>
+        public void Save(string name, string directory, bool isSpriteEmbedded)
         {
-            this.Save(SpriteFormat.Gif, isSpriteEmbedded, name, directory);
-            this.Save(SpriteFormat.Png, isSpriteEmbedded, name, directory);
+            this.Save(name, directory, isSpriteEmbedded, SpriteFormat.Gif);
+            this.Save(name, directory, isSpriteEmbedded, SpriteFormat.Png);
         }
 
         /// <summary>
         /// Save the sprite in a specific format
         /// </summary>
-        /// <param name="fmt"><see cref="SpriteFormat.Gif"/> or <see cref="SpriteFormat.Png"/></param>
-        /// <param name="isSpriteEmbedded">true, the Sprite is Base64 encoded as a data uri within the css file. false the sprite is saved as a referenced image file.</param>
         /// <param name="name">The name to use when creating sprite artifacts (css, gif, and png files)</param>
         /// <param name="directory">The file directory to output the sprite artifacts</param>
-        public void Save(SpriteFormat fmt, bool isSpriteEmbedded, string name, string directory)
+        /// <param name="isSpriteEmbedded">true, the Sprite is Base64 encoded as a data uri within the css file. false the sprite is saved as a referenced image file.</param>
+        /// <param name="fmt"><see cref="SpriteFormat.Gif"/> or <see cref="SpriteFormat.Png"/></param>
+        public void Save(string name, string directory, bool isSpriteEmbedded, SpriteFormat fmt)
         {
             name = this.CleanFileName(name ?? this.Id.ToString());
             string cssFileName = Path.Join(directory, $"{name}_{(fmt == SpriteFormat.Gif ? "g" : "p")}{(isSpriteEmbedded ? "e" : string.Empty)}.css");

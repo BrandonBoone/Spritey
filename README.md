@@ -15,6 +15,10 @@ The end goal of this project is to produce both a .NET Core NuGet library for co
 
 ### API
 
+#### Option 1
+
+- generate css with gif or png that is embedded or referenced
+
 ```csharp
 using Spritey;
 
@@ -23,11 +27,47 @@ string outputDirectory = ""; // path to output files
 
 using (Sprite sprite = new Sprite(directoryOfImages))
 {
-    // Option 1
-    // output css with embedded gif
-    // output css with embedded png
-    // output css and referenced gif
-    // output css and referenced png
+    // css with referenced gif
+    sprite.Save("spriteName", outputDirectory, false, SpriteFormat.Gif);
+}
+
+```
+
+#### Option 2
+
+- generate css with embedded or referenced gif
+- and generate css with embedded or referenced png
+
+```csharp
+using Spritey;
+
+string directoryOfImages = ""; // path to your images
+string outputDirectory = ""; // path to output files
+
+using (Sprite sprite = new Sprite(directoryOfImages))
+{
+    // css with embedded gif and css with embedded png
+    sprite.Save("spriteName", outputDirectory, true);
+}
+
+```
+
+#### Option 3
+
+- generate css with embedded gif
+- and generate css with embedded png
+- and generate css and referenced gif
+- and generate css and referenced png
+
+```csharp
+using Spritey;
+
+string directoryOfImages = ""; // path to your images
+string outputDirectory = ""; // path to output files
+
+using (Sprite sprite = new Sprite(directoryOfImages))
+{
+    // output all variations
     sprite.Save("spriteName", outputDirectory);
 }
 ```
