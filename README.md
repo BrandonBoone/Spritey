@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img src="https://raw.githubusercontent.com/BrandonBoone/Spritey/master/docs/Spritey.png" alt="Spritey" width="256" />
+    <img src="https://raw.githubusercontent.com/BrandonBoone/Spritey/master/docs/Spritey3.png" alt="Spritey" width="256" />
     <br />
     Spritey
 </h1>
