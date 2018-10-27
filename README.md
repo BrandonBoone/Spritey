@@ -2,6 +2,12 @@
     <img src="https://raw.githubusercontent.com/BrandonBoone/Spritey/master/docs/Spritey3.png" alt="Spritey" width="256" />
     <br />
 </h1>
+<div align="center">
+
+[![GitHub license](https://img.shields.io/badge/license-MIT%20%26%20CPOL%201.02-blue.svg)](https://raw.githubusercontent.com/BrandonBoone/Spritey/master/LICENSE)
+[![Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=flat&logo=twitter)](https://twitter.com/intent/tweet?hashtags=spritey,dotnet,oss&text=Spritey.+A+new+sprite+generator+in+C%23&url=https%3a%2f%2fgithub.com%2fBrandonBoone%2fSpritey&via=brandonjboone)
+
+</div>
 
 While sprites may not be in vogue anymore and ~~font~~ svg based icon libraries are all the rage, css based sprites still have their place (*i think*), so why not implement yet another sprite generator in .NET Core.
 
