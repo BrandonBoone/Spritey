@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
 pool:
-  vmImage: 'vs2017-win2016'
+  vmImage: 'Ubuntu 16.04'
 
 variables:
   buildConfiguration: 'Release'
@@ -12,4 +12,9 @@ variables:
 steps:
 - script: dotnet restore Spritey.sln
 - script: dotnet build ./src/Spritey/Spritey.csproj
-- script: cd .\tests\CodeCoverage\ && CodeCoverage.cmd
+- script: |
+    dotnet test ./test/WireMock.Net.Tests/WireMock.Net.Tests.csproj --configuration $(buildConfiguration) --framework netcoreapp2.1 --logger trx
+- task: PublishTestResults@2
+  inputs:
+    testRunner: VSTest
+    testResultsFiles: '**/*.trx'
