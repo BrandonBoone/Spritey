@@ -16,7 +16,6 @@ steps:
   inputs:
     command: restore
     restoreSolution: './tests/CodeCoverage/packages.config'
-    restoreDirectory: './tests/CodeCoverage'
-- script: ./tests/CodeCoverage/OpenCover.4.6.519/tools/OpenCover.Console.exe -target:"dotnet.exe" -targetargs:"test tests\Spritey.Test\Spritey.Test.csproj -c Release -f netcoreapp2.1 /p:codecov=true" -register:user -threshold:10 -oldStyle -safemode:off -output:.\Spritey.Coverage.xml -hideskipped:All -returntargetcode
-- script: ./tests/CodeCoverage/Codecov.1.1.0/tools/codecov.exe -f Spritey.Coverage.xml -t $(CODECOV_TOKEN)
+- script: tests\CodeCoverage\OpenCover.4.6.519\tools\OpenCover.Console.exe -target:"dotnet.exe" -targetargs:"test tests\Spritey.Test\Spritey.Test.csproj -c Release -f netcoreapp2.1 /p:codecov=true" -register:user -threshold:10 -oldStyle -safemode:off -output:.\Spritey.Coverage.xml -hideskipped:All -returntargetcode
+- script: tests\CodeCoverage\Codecov.1.1.0\tools\codecov.exe -f Spritey.Coverage.xml -t $(CODECOV_TOKEN)
 
