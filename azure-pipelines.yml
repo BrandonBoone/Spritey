@@ -3,20 +3,40 @@
 # Add steps that run tests, create a NuGet package, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
-pool:
-  vmImage: 'vs2017-win2016'
+jobs:
+- job: Windows
 
-variables:
-  buildConfiguration: 'Release'
+  pool:
+    vmImage: 'vs2017-win2016'
 
-steps:
-- script: dotnet restore Spritey.sln
-- script: dotnet build ./src/Spritey/Spritey.csproj
-- task: NuGetCommand@2
-  inputs:
-    command: restore
-    restoreSolution: './tests/CodeCoverage/packages.config'
-    restoreDirectory: 'packages'
-- script: tests\CodeCoverage\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -target:"dotnet.exe" -targetargs:"test tests\Spritey.Test\Spritey.Test.csproj -c Release -f netcoreapp2.1 /p:codecov=true" -register:user -threshold:10 -oldStyle -safemode:off -output:.\Spritey.Coverage.xml -hideskipped:All -returntargetcode
-- script: tests\CodeCoverage\packages\Codecov.1.1.0\tools\codecov.exe -f Spritey.Coverage.xml -t $(CODECOV_TOKEN)
+  variables:
+    buildConfiguration: 'Release'
 
+  steps:
+  - script: dotnet restore Spritey.sln
+  - script: dotnet build ./src/Spritey/Spritey.csproj
+  - task: NuGetCommand@2
+    inputs:
+      command: restore
+      restoreSolution: './tests/CodeCoverage/packages.config'
+      restoreDirectory: 'packages'
+  - script: tests\CodeCoverage\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -target:"dotnet.exe" -targetargs:"test tests\Spritey.Test\Spritey.Test.csproj -c Release -f netcoreapp2.1 /p:codecov=true" -register:user -threshold:10 -oldStyle -safemode:off -output:.\Spritey.Coverage.xml -hideskipped:All -returntargetcode
+  - script: tests\CodeCoverage\packages\Codecov.1.1.0\tools\codecov.exe -f Spritey.Coverage.xml -t $(CODECOV_TOKEN)
+
+- job: Linux
+
+  pool:
+    vmImage: 'Ubuntu 16.04'
+
+  variables:
+    buildConfiguration: 'Release'
+
+  steps:
+  - script: dotnet restore Spritey.sln
+  - script: dotnet build ./src/Spritey/Spritey.csproj
+  - script: |
+      dotnet test ./tests/Spritey.Test/Spritey.Test.csproj --configuration $(buildConfiguration) --framework netcoreapp2.1 --logger trx
+  - task: PublishTestResults@2
+    inputs:
+      testRunner: VSTest
+      testResultsFiles: '**/*.trx'
