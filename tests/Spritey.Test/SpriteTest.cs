@@ -51,13 +51,13 @@ namespace Spritey.Test.ImageProcessing.Sprites
 
                 using (Sprite sprite = new Sprite(path))
                 {
-                    resultsDir = Path.Join(path, RESULTS_DIR);
+                    resultsDir = Path.Combine(path, RESULTS_DIR);
                     CreateDirectoryIfNotExists(resultsDir);
 
-                    string filePath = Path.Join(resultsDir, "sprite.png");
+                    string filePath = Path.Combine(resultsDir, "sprite.png");
                     sprite.Png.Save(filePath);
 
-                    string comparisonFile = Path.Join(comparisonPath, testSet, "sprite.png");
+                    string comparisonFile = Path.Combine(comparisonPath, testSet, "sprite.png");
                     Assert.True(Utilities.FilesAreEqual(new FileInfo(comparisonFile), new FileInfo(filePath)));
                 }
             }
@@ -82,13 +82,13 @@ namespace Spritey.Test.ImageProcessing.Sprites
 
                 using (Sprite sprite = new Sprite(path))
                 {
-                    resultsDir = Path.Join(path, RESULTS_DIR);
+                    resultsDir = Path.Combine(path, RESULTS_DIR);
                     CreateDirectoryIfNotExists(resultsDir);
 
-                    string filePath = Path.Join(resultsDir, "sprite.gif");
+                    string filePath = Path.Combine(resultsDir, "sprite.gif");
                     sprite.Gif.Save(filePath);
 
-                    string comparisonFile = Path.Join(comparisonPath, testSet, "sprite.gif");
+                    string comparisonFile = Path.Combine(comparisonPath, testSet, "sprite.gif");
                     Assert.True(Utilities.FilesAreEqual(new FileInfo(comparisonFile), new FileInfo(filePath)));
                 }
             }
@@ -114,14 +114,14 @@ namespace Spritey.Test.ImageProcessing.Sprites
                 using (Sprite sprite = new Sprite(path))
                 {
                     
-                    resultsDir = Path.Join(path, RESULTS_DIR);
+                    resultsDir = Path.Combine(path, RESULTS_DIR);
                     CreateDirectoryIfNotExists(resultsDir);
 
                     sprite.Save("sprite", resultsDir);
 
                     foreach(string file in Directory.GetFiles(resultsDir))
                     {
-                        string comparisonFile = Path.Join(comparisonPath, testSet, Path.GetFileName(file));
+                        string comparisonFile = Path.Combine(comparisonPath, testSet, Path.GetFileName(file));
                         Assert.True(Utilities.FilesAreEqual(new FileInfo(comparisonFile), new FileInfo(file)));
                     }
                 }
