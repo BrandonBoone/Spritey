@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using System.IO;
+using Xunit;
+using Xunit.Abstractions;
 using Microsoft.DotNet.PlatformAbstractions;
 
 namespace Spritey.Test
@@ -26,13 +28,19 @@ namespace Spritey.Test
         // https://stackoverflow.com/a/1359947/402706
         // Answered: [chsh](https://stackoverflow.com/users/122268/chsh)
         // Asked: [Robinicks](https://stackoverflow.com/users/41021/robinicks)
-        public static bool FilesAreEqual(FileInfo first, FileInfo second)
+        public static bool FilesAreEqual(FileInfo first, FileInfo second, ITestOutputHelper output)
         {
             if (first.Length != second.Length)
+            {
+                output.WriteLine("fist.Length is {0}; second.Length is {1}", first.Length, second.Length);
                 return false;
+            }
 
             if (string.Equals(first.FullName, second.FullName, StringComparison.OrdinalIgnoreCase))
+            {
+                output.WriteLine("fist.FullName is {0}; second.FullName is {1}", first.FullName, second.FullName);
                 return true;
+            }
 
             int iterations = (int)Math.Ceiling((double)first.Length / BYTES_TO_READ);
 

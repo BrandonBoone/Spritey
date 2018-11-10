@@ -24,7 +24,7 @@ namespace Spritey.Test.ImageProcessing.Sprites
         {
             string path = Utilities.GetTestDataFolder("TestSet1");
             output.WriteLine("path is {0}", path);
-            
+
             using (SpriteBlueprint blueprint = SpriteBlueprint.GetFromImageDirectory(path))
             using (Sprite sprite = new Sprite(blueprint))
             {
@@ -73,7 +73,7 @@ namespace Spritey.Test.ImageProcessing.Sprites
                     sprite.Png.Save(filePath);
 
                     string comparisonFile = Path.Combine(comparisonPath, testSet, "sprite.png");
-                    Assert.True(Utilities.FilesAreEqual(new FileInfo(comparisonFile), new FileInfo(filePath)));
+                    Assert.True(Utilities.FilesAreEqual(new FileInfo(comparisonFile), new FileInfo(filePath), output));
                 }
             }
             finally
@@ -107,7 +107,7 @@ namespace Spritey.Test.ImageProcessing.Sprites
                     sprite.Gif.Save(filePath);
 
                     string comparisonFile = Path.Combine(comparisonPath, testSet, "sprite.gif");
-                    Assert.True(Utilities.FilesAreEqual(new FileInfo(comparisonFile), new FileInfo(filePath)));
+                    Assert.True(Utilities.FilesAreEqual(new FileInfo(comparisonFile), new FileInfo(filePath), output));
                 }
             }
             finally
@@ -143,7 +143,7 @@ namespace Spritey.Test.ImageProcessing.Sprites
                     foreach(string file in Directory.GetFiles(resultsDir))
                     {
                         string comparisonFile = Path.Combine(comparisonPath, testSet, Path.GetFileName(file));
-                        Assert.True(Utilities.FilesAreEqual(new FileInfo(comparisonFile), new FileInfo(file)));
+                        Assert.True(Utilities.FilesAreEqual(new FileInfo(comparisonFile), new FileInfo(file), output));
                     }
                 }
             }
