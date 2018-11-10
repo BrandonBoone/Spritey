@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;
+using Xunit.Abstractions;
 using System.IO;
 
 namespace Spritey.Test.ImageProcessing.Sprites
@@ -11,10 +12,19 @@ namespace Spritey.Test.ImageProcessing.Sprites
     {
         const string RESULTS_DIR = "results";
 
+        private readonly ITestOutputHelper output;
+
+        public SpriteTest(ITestOutputHelper output)
+        {
+            this.output = output;
+        }
+
         [Fact]
         public void Sprite_ConstructorWithBlueprint_ImageProcessedCorrectly()
         {
             string path = Utilities.GetTestDataFolder("TestSet1");
+            output.WriteLine("path is {0}", path);
+            
             using (SpriteBlueprint blueprint = SpriteBlueprint.GetFromImageDirectory(path))
             using (Sprite sprite = new Sprite(blueprint))
             {
@@ -28,6 +38,8 @@ namespace Spritey.Test.ImageProcessing.Sprites
         public void Sprite_ConstructorWithPath_ImageProcessedCorrectly()
         {
             string path = Utilities.GetTestDataFolder("TestSet1");
+            output.WriteLine("path is {0}", path);
+
             using (Sprite sprite = new Sprite(path))
             {
                 Assert.Equal(32, sprite.Height);
@@ -47,7 +59,10 @@ namespace Spritey.Test.ImageProcessing.Sprites
             try
             {
                 string path = Utilities.GetTestDataFolder(testSet);
+                output.WriteLine("path is {0}", path);
+
                 string comparisonPath = Utilities.GetTestDataFolder("SnapShots");
+                output.WriteLine("comparisonPath is {0}", comparisonPath);
 
                 using (Sprite sprite = new Sprite(path))
                 {
@@ -78,7 +93,10 @@ namespace Spritey.Test.ImageProcessing.Sprites
             try
             {
                 string path = Utilities.GetTestDataFolder(testSet);
+                output.WriteLine("path is {0}", path);
+
                 string comparisonPath = Utilities.GetTestDataFolder("SnapShots");
+                output.WriteLine("comparisonPath is {0}", comparisonPath);
 
                 using (Sprite sprite = new Sprite(path))
                 {
@@ -109,7 +127,10 @@ namespace Spritey.Test.ImageProcessing.Sprites
             try
             {
                 string path = Utilities.GetTestDataFolder(testSet);
+                output.WriteLine("path is {0}", path);
+                
                 string comparisonPath = Utilities.GetTestDataFolder("SnapShots");
+                output.WriteLine("comparisonPath is {0}", comparisonPath);
 
                 using (Sprite sprite = new Sprite(path))
                 {
