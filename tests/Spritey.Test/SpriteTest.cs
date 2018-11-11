@@ -78,7 +78,7 @@ namespace Spritey.Test.ImageProcessing.Sprites
 
                     var actualImage = Image.Load(filePath);
                     var expectedImage = Image.Load(comparisonFile);
-                    Assert.True(Utilities.ImagesAreEqual(expectedImage, actualImage));
+                    Assert.True(Utilities.ImagesAreEqual(expectedImage, actualImage, this.output));
                     // Assert.True(Utilities.FilesAreEqual(new FileInfo(comparisonFile), new FileInfo(filePath), this.output));
                 }
             }
@@ -116,7 +116,7 @@ namespace Spritey.Test.ImageProcessing.Sprites
 
                     var actualImage = Image.Load(filePath);
                     var expectedImage = Image.Load(comparisonFile);
-                    Assert.True(Utilities.ImagesAreEqual(expectedImage, actualImage));
+                    Assert.True(Utilities.ImagesAreEqual(expectedImage, actualImage, this.output));
 
                     // Assert.True(Utilities.FilesAreEqual(new FileInfo(comparisonFile), new FileInfo(filePath), this.output));
                 }
@@ -163,7 +163,7 @@ namespace Spritey.Test.ImageProcessing.Sprites
                         {
                             var actualImage = Image.Load(file);
                             var expectedImage = Image.Load(comparisonFile);
-                            Assert.True(Utilities.ImagesAreEqual(expectedImage, actualImage));
+                            Assert.True(Utilities.ImagesAreEqual(expectedImage, actualImage, this.output));
                         }
                         
                         // Assert.True(Utilities.FilesAreEqual(new FileInfo(comparisonFile), new FileInfo(file), this.output));

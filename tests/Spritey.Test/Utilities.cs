@@ -70,10 +70,13 @@ namespace Spritey.Test
         // TODO: See if you can integrate the SixLabors ExactImageComparer class.
         public static bool ImagesAreEqual(
             Image<Rgba32> expected,
-            Image<Rgba32> actual)
+            Image<Rgba32> actual, 
+            ITestOutputHelper output
+            )
         {
             if (expected.Size() != actual.Size())
             {
+                output.WriteLine("expected.Size() is different from actual.Size()");
                 return false;
             }
 
@@ -86,6 +89,7 @@ namespace Spritey.Test
 
                     if (exp != act)
                     {
+                        output.WriteLine("exp {0} is different from act {1}", exp, act);
                         return false;
                     }
                 }
