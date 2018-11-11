@@ -5,6 +5,8 @@ using System.Text;
 using Xunit;
 using Xunit.Abstractions;
 using System.IO;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
 
 namespace Spritey.Test.ImageProcessing.Sprites
 {
@@ -23,10 +25,10 @@ namespace Spritey.Test.ImageProcessing.Sprites
         public void Sprite_ConstructorWithBlueprint_ImageProcessedCorrectly()
         {
             string path = Utilities.GetTestDataFolder("TestSet1");
-            output.WriteLine("path is {0}", path);
+            this.output.WriteLine("path is {0}", path);
 
-            using (SpriteBlueprint blueprint = SpriteBlueprint.GetFromImageDirectory(path))
-            using (Sprite sprite = new Sprite(blueprint))
+            using (var blueprint = SpriteBlueprint.GetFromImageDirectory(path))
+            using (var sprite = new Sprite(blueprint))
             {
                 Assert.Equal(32, sprite.Height);
                 Assert.Equal(160, sprite.Width);
@@ -38,9 +40,9 @@ namespace Spritey.Test.ImageProcessing.Sprites
         public void Sprite_ConstructorWithPath_ImageProcessedCorrectly()
         {
             string path = Utilities.GetTestDataFolder("TestSet1");
-            output.WriteLine("path is {0}", path);
+            this.output.WriteLine("path is {0}", path);
 
-            using (Sprite sprite = new Sprite(path))
+            using (var sprite = new Sprite(path))
             {
                 Assert.Equal(32, sprite.Height);
                 Assert.Equal(160, sprite.Width);
@@ -59,26 +61,30 @@ namespace Spritey.Test.ImageProcessing.Sprites
             try
             {
                 string path = Utilities.GetTestDataFolder(testSet);
-                output.WriteLine("path is {0}", path);
+                this.output.WriteLine("path is {0}", path);
 
                 string comparisonPath = Utilities.GetTestDataFolder("SnapShots");
-                output.WriteLine("comparisonPath is {0}", comparisonPath);
+                this.output.WriteLine("comparisonPath is {0}", comparisonPath);
 
-                using (Sprite sprite = new Sprite(path))
+                using (var sprite = new Sprite(path))
                 {
                     resultsDir = Path.Combine(path, RESULTS_DIR);
-                    CreateDirectoryIfNotExists(resultsDir);
+                    this.CreateDirectoryIfNotExists(resultsDir);
 
                     string filePath = Path.Combine(resultsDir, "sprite.png");
                     sprite.Png.Save(filePath);
 
                     string comparisonFile = Path.Combine(comparisonPath, testSet, "sprite.png");
-                    Assert.True(Utilities.FilesAreEqual(new FileInfo(comparisonFile), new FileInfo(filePath), output));
+
+                    var actualImage = Image.Load(filePath);
+                    var expectedImage = Image.Load(comparisonFile);
+                    Assert.True(Utilities.ImagesAreEqual(expectedImage, actualImage));
+                    // Assert.True(Utilities.FilesAreEqual(new FileInfo(comparisonFile), new FileInfo(filePath), this.output));
                 }
             }
             finally
             {
-                RemoveDirectoryIfExists(resultsDir);
+                this.RemoveDirectoryIfExists(resultsDir);
             }
         }
 
@@ -93,26 +99,31 @@ namespace Spritey.Test.ImageProcessing.Sprites
             try
             {
                 string path = Utilities.GetTestDataFolder(testSet);
-                output.WriteLine("path is {0}", path);
+                this.output.WriteLine("path is {0}", path);
 
                 string comparisonPath = Utilities.GetTestDataFolder("SnapShots");
-                output.WriteLine("comparisonPath is {0}", comparisonPath);
+                this.output.WriteLine("comparisonPath is {0}", comparisonPath);
 
-                using (Sprite sprite = new Sprite(path))
+                using (var sprite = new Sprite(path))
                 {
                     resultsDir = Path.Combine(path, RESULTS_DIR);
-                    CreateDirectoryIfNotExists(resultsDir);
+                    this.CreateDirectoryIfNotExists(resultsDir);
 
                     string filePath = Path.Combine(resultsDir, "sprite.gif");
                     sprite.Gif.Save(filePath);
 
                     string comparisonFile = Path.Combine(comparisonPath, testSet, "sprite.gif");
-                    Assert.True(Utilities.FilesAreEqual(new FileInfo(comparisonFile), new FileInfo(filePath), output));
+
+                    var actualImage = Image.Load(filePath);
+                    var expectedImage = Image.Load(comparisonFile);
+                    Assert.True(Utilities.ImagesAreEqual(expectedImage, actualImage));
+
+                    // Assert.True(Utilities.FilesAreEqual(new FileInfo(comparisonFile), new FileInfo(filePath), this.output));
                 }
             }
             finally
             {
-                RemoveDirectoryIfExists(resultsDir);
+                this.RemoveDirectoryIfExists(resultsDir);
             }
         }
 
@@ -127,29 +138,41 @@ namespace Spritey.Test.ImageProcessing.Sprites
             try
             {
                 string path = Utilities.GetTestDataFolder(testSet);
-                output.WriteLine("path is {0}", path);
+                this.output.WriteLine("path is {0}", path);
                 
                 string comparisonPath = Utilities.GetTestDataFolder("SnapShots");
-                output.WriteLine("comparisonPath is {0}", comparisonPath);
+                this.output.WriteLine("comparisonPath is {0}", comparisonPath);
 
-                using (Sprite sprite = new Sprite(path))
+                using (var sprite = new Sprite(path))
                 {
                     
                     resultsDir = Path.Combine(path, RESULTS_DIR);
-                    CreateDirectoryIfNotExists(resultsDir);
+                    this.CreateDirectoryIfNotExists(resultsDir);
 
                     sprite.Save("sprite", resultsDir);
 
                     foreach(string file in Directory.GetFiles(resultsDir))
                     {
+                        string ext = Path.GetExtension(file);
                         string comparisonFile = Path.Combine(comparisonPath, testSet, Path.GetFileName(file));
-                        Assert.True(Utilities.FilesAreEqual(new FileInfo(comparisonFile), new FileInfo(file), output));
+                        if (ext == ".css")
+                        {
+                            Assert.True(Utilities.FilesAreEqual(new FileInfo(comparisonFile), new FileInfo(file), this.output));
+                        }
+                        else
+                        {
+                            var actualImage = Image.Load(file);
+                            var expectedImage = Image.Load(comparisonFile);
+                            Assert.True(Utilities.ImagesAreEqual(expectedImage, actualImage));
+                        }
+                        
+                        // Assert.True(Utilities.FilesAreEqual(new FileInfo(comparisonFile), new FileInfo(file), this.output));
                     }
                 }
             }
             finally
             {
-                RemoveDirectoryIfExists(resultsDir);
+                this.RemoveDirectoryIfExists(resultsDir);
             }
         }
 

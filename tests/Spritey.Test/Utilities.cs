@@ -6,6 +6,8 @@ using System.IO;
 using Xunit;
 using Xunit.Abstractions;
 using Microsoft.DotNet.PlatformAbstractions;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
 
 namespace Spritey.Test
 {
@@ -24,6 +26,7 @@ namespace Spritey.Test
         }
 
         const int BYTES_TO_READ = sizeof(Int64);
+
 
         // https://stackoverflow.com/a/1359947/402706
         // Answered: [chsh](https://stackoverflow.com/users/122268/chsh)
@@ -60,6 +63,33 @@ namespace Spritey.Test
                 }
             }
 
+            return true;
+        }
+
+        // https://github.com/SixLabors/ImageSharp/blob/fc4da81123d549eb675e9ef29014cbbec8ab64b5/tests/ImageSharp.Tests/TestUtilities/ImageComparison/ExactImageComparer.cs
+        // TODO: See if you can integrate the SixLabors ExactImageComparer class.
+        public static bool ImagesAreEqual(
+            Image<Rgba32> expected,
+            Image<Rgba32> actual)
+        {
+            if (expected.Size() != actual.Size())
+            {
+                return false;
+            }
+
+            for (int y = 0; y < expected.Height; ++y)
+            {
+                for (int x = 0; x < expected.Width; ++x)
+                {
+                    Rgba32 exp = expected[x, y];
+                    Rgba32 act = actual[x, y];
+
+                    if (exp != act)
+                    {
+                        return false;
+                    }
+                }
+            }
             return true;
         }
     }
