@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using Spritey.ImageProcessing.CompositeMapping;
 
     /// <summary>
@@ -66,7 +67,7 @@
         {
             if (Directory.Exists(sImageDirectoryPath))
             {
-                List<ImageInfo> imgInfo = ImageInfo.GetStaticFromImageDirectory(sImageDirectoryPath);
+                var imgInfo = ImageInfo.GetStaticFromImageDirectory(sImageDirectoryPath).OrderBy((img) => img.Name).ToList();
 
                 // The program will also stop trying when it finds a candidate with efficiency greater or equal to
                 // <Cutoff efficiency>. Efficiency is <total area all rectangles> / <area enclosing rectangle> -
