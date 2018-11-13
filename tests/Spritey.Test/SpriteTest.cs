@@ -32,7 +32,7 @@ namespace Spritey.Test.ImageProcessing.Sprites
             using (var blueprint = SpriteBlueprint.GetFromImageDirectory(path))
             using (var sprite = new Sprite(blueprint))
             {
-                string imagesToProcess = blueprint.MappedImages.Aggregate("", (prev, next) => $"{(prev != "" ? $"{prev}," : "")}{((ImageInfo)next.ImageInfo).Name}");
+                string imagesToProcess = sprite.ImageData.Aggregate("", (prev, next) => $"{(prev != "" ? $"{prev}," : "")}{next.Name}");
                 this.output.WriteLine("processing Images: {0}", imagesToProcess);
                 Assert.Equal(32, sprite.Height);
                 Assert.Equal(160, sprite.Width);
@@ -72,6 +72,9 @@ namespace Spritey.Test.ImageProcessing.Sprites
 
                 using (var sprite = new Sprite(path))
                 {
+                    string imagesToProcess = sprite.ImageData.Aggregate("", (prev, next) => $"{(prev != "" ? $"{prev}," : "")}{next.Name}");
+                    this.output.WriteLine("processing Images: {0}", imagesToProcess);
+
                     resultsDir = Path.Combine(path, RESULTS_DIR);
                     this.CreateDirectoryIfNotExists(resultsDir);
 
@@ -110,6 +113,9 @@ namespace Spritey.Test.ImageProcessing.Sprites
 
                 using (var sprite = new Sprite(path))
                 {
+                    string imagesToProcess = sprite.ImageData.Aggregate("", (prev, next) => $"{(prev != "" ? $"{prev}," : "")}{next.Name}");
+                    this.output.WriteLine("processing Images: {0}", imagesToProcess);
+
                     resultsDir = Path.Combine(path, RESULTS_DIR);
                     this.CreateDirectoryIfNotExists(resultsDir);
 
@@ -149,7 +155,9 @@ namespace Spritey.Test.ImageProcessing.Sprites
 
                 using (var sprite = new Sprite(path))
                 {
-                    
+                    string imagesToProcess = sprite.ImageData.Aggregate("", (prev, next) => $"{(prev != "" ? $"{prev}," : "")}{next.Name}");
+                    this.output.WriteLine("processing Images: {0}", imagesToProcess);
+
                     resultsDir = Path.Combine(path, RESULTS_DIR);
                     this.CreateDirectoryIfNotExists(resultsDir);
 
