@@ -2,11 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 using Xunit;
 using Xunit.Abstractions;
 using System.IO;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
+using Spritey.ImageProcessing.CompositeMapping;
 
 namespace Spritey.Test.ImageProcessing.Sprites
 {
@@ -30,6 +32,8 @@ namespace Spritey.Test.ImageProcessing.Sprites
             using (var blueprint = SpriteBlueprint.GetFromImageDirectory(path))
             using (var sprite = new Sprite(blueprint))
             {
+                string imagesToProcess = blueprint.MappedImages.Aggregate("", (prev, next) => $"{(prev != "" ? $"{prev}," : "")}{((ImageInfo)next.ImageInfo).Name}");
+                this.output.WriteLine("processing Images: {0}", imagesToProcess);
                 Assert.Equal(32, sprite.Height);
                 Assert.Equal(160, sprite.Width);
                 Assert.Equal(7, sprite.ImageData.Count);
