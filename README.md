@@ -23,7 +23,7 @@ The end goal of this project is to produce both a .NET Core NuGet library for co
 
 |             |Build Status|Code Coverage|
 |-------------|:----------:|:-----------:|
-|**Windows**  |[![Build status](https://ci.appveyor.com/api/projects/status/a9bv92ullov5mi3v?svg=true)](https://ci.appveyor.com/project/BrandonBoone/spritey)|[![codecov](https://codecov.io/gh/BrandonBoone/Spritey/branch/master/graph/badge.svg)](https://codecov.io/gh/BrandonBoone/Spritey)|
+|**Windows & Linux**  |[![Build Status](https://dev.azure.com/Spritey/Spritey/_apis/build/status/Spritey)](https://dev.azure.com/Spritey/Spritey/_build/latest?definitionId=1)|[![codecov](https://codecov.io/gh/BrandonBoone/Spritey/branch/master/graph/badge.svg)](https://codecov.io/gh/BrandonBoone/Spritey)|
 
 ### API
 
