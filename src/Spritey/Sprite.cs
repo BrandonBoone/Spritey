@@ -99,16 +99,16 @@
         public void Save(string name, string directory, bool isSpriteEmbedded, SpriteFormat fmt)
         {
             name = this.CleanFileName(name ?? this.Id.ToString());
-            string cssFileName = Path.Join(directory, $"{name}_{(fmt == SpriteFormat.Gif ? "g" : "p")}{(isSpriteEmbedded ? "e" : string.Empty)}.css");
+            string cssFileName = Path.Combine(directory, $"{name}_{(fmt == SpriteFormat.Gif ? "g" : "p")}{(isSpriteEmbedded ? "e" : string.Empty)}.css");
             if (!isSpriteEmbedded)
             {
                 if (fmt == SpriteFormat.Gif)
                 {
-                    this.Gif.Save(Path.Join(directory, $"{name}.gif"));
+                    this.Gif.Save(Path.Combine(directory, $"{name}.gif"));
                 }
                 else
                 {
-                    this.Png.Save(Path.Join(directory, $"{name}.png"));
+                    this.Png.Save(Path.Combine(directory, $"{name}.png"));
                 }
 
                 File.AppendAllText(cssFileName, SpriteCss.GetReferencedSpriteCSS(this, name, fmt));
