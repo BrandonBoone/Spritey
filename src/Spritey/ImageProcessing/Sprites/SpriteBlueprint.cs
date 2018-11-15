@@ -84,14 +84,15 @@
                 IMapper<SpriteBlueprint> mapper = null;
                 switch (layout)
                 {
-                    case Orientation.Optimal:
-                        mapper = new MapperOptimalEfficiency<SpriteBlueprint>(new Canvas(), cutoffEfficiency, maximumNbrCandidates);
-                        break;
                     case Orientation.HorizontalOnly:
                         mapper = new MapperHorizontalOnly<SpriteBlueprint>();
                         break;
                     case Orientation.VerticalOnly:
                         mapper = new MapperVerticalOnly<SpriteBlueprint>();
+                        break;
+                    case Orientation.Optimal:
+                    default:
+                        mapper = new MapperOptimalEfficiency<SpriteBlueprint>(new Canvas(), cutoffEfficiency, maximumNbrCandidates);
                         break;
                 }
 
