@@ -21,9 +21,9 @@ The end goal of this project is to produce both a .NET Core NuGet library for co
 
 ### Build Status
 
-|             |Build Status|Code Coverage|
-|-------------|:----------:|:-----------:|
-|**Windows & Linux**  |[![Build Status](https://dev.azure.com/Spritey/Spritey/_apis/build/status/Spritey)](https://dev.azure.com/Spritey/Spritey/_build/latest?definitionId=1)|[![codecov](https://codecov.io/gh/BrandonBoone/Spritey/branch/master/graph/badge.svg)](https://codecov.io/gh/BrandonBoone/Spritey)|
+|             |Build Status|Code Coverage|Quality|
+|-------------|:----------:|:-----------:|:-----------:|
+|**Windows & Linux**  |[![Build Status](https://dev.azure.com/Spritey/Spritey/_apis/build/status/Spritey)](https://dev.azure.com/Spritey/Spritey/_build/latest?definitionId=1)|[![codecov](https://codecov.io/gh/BrandonBoone/Spritey/branch/master/graph/badge.svg)](https://codecov.io/gh/BrandonBoone/Spritey)|[![sonarcloud](https://sonarcloud.io/api/project_badges/measure?project=BrandonBoone_Spritey&metric=alert_status)](https://sonarcloud.io/dashboard?id=BrandonBoone_Spritey)|
 
 ### API
 
