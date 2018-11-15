@@ -1,28 +1,27 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
+    <Description>A cross-platform library for generating sprites.</Description>
+    <ProjectGuid>{1630085e-aa4d-4158-84ff-8897c2518463}</ProjectGuid>
+    <AssemblyTitle>Spritey</AssemblyTitle>
+    <VersionPrefix Condition="$(packageversion) != ''">$(packageversion)</VersionPrefix>
+    <VersionPrefix Condition="$(packageversion) == ''">0.0.1</VersionPrefix>
+    <Authors>Brandon Boone</Authors>
+    <Copyright>Brandon Boone</Copyright>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <AssemblyName>Spritey</AssemblyName>
+    <PackageId>Spritey</PackageId>
+    <PackageTags>Image Sprite Png Gif Core</PackageTags>
+    <RootNamespace>Spritey</RootNamespace>
+    <PackageProjectUrl>https://github.com/BrandonBoone/Spritey</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/BrandonBoone/Spritey/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/BrandonBoone/Spritey/master/docs/Spritey3.png</PackageIconUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/BrandonBoone/Spritey</RepositoryUrl>
     <DebugType Condition="$(codecov) != ''">full</DebugType>
     <DebugType Condition="$(codecov) == ''">portable</DebugType>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="ImageProcessing\Quantization\**" />
-    <EmbeddedResource Remove="ImageProcessing\Quantization\**" />
-    <None Remove="ImageProcessing\Quantization\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0005" />
-    <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta0005" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta007">
-      <PrivateAssets>All</PrivateAssets>
-    </PackageReference>
-  </ItemGroup>
-
-  <PropertyGroup>
     <CodeAnalysisRuleSet>..\..\Spritey.ruleset</CodeAnalysisRuleSet>
-    <RootNamespace>Spritey</RootNamespace>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -33,4 +32,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>./bin/Release/Spritey.xml</DocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0005" />
+    <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta0005" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta007">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
 </Project>
