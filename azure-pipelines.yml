@@ -13,13 +13,21 @@ jobs:
     buildConfiguration: 'Release'
 
   steps:
+  #- script: |
+  #    pwsh -c '.\UpdateBuildVersion.ps1'
+  #  displayName: 'Build and Test'
+  - task: gittools.gitversion.gitversion-task.GitVersion@4
+    displayName: GitVersion
+    inputs:
+      updateAssemblyInfo: true
+      preferBundledVersion: false
   - task: SonarSource.sonarqube.15B84CA1-B62F-4A2A-A403-89B77A063157.SonarQubePrepare@4
     displayName: 'Prepare analysis on SonarQube'
     inputs:
       SonarQube: SonarQube.io
       projectKey: 'BrandonBoone_Spritey'
       projectName: Spritey
-      projectVersion: '$(AssemblyVersion)'
+      projectVersion: '$(GitVersion.SemVer)'
       extraProperties: |
         sonar.organization=brandonboone-github
         sonar.branch.name=$(Build.SourceBranchName)
@@ -49,6 +57,11 @@ jobs:
     buildConfiguration: 'Release'
 
   steps:
+ # - task: gittools.gitversion.gitversion-task.GitVersion@4
+ #   displayName: GitVersion
+ #   inputs:
+ #     updateAssemblyInfo: true
+ #     preferBundledVersion: false
   - script: dotnet restore Spritey.sln
     displayName: Restore Spritey.sln
   - script: dotnet build ./src/Spritey/Spritey.csproj
