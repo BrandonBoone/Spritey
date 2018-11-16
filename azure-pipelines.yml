@@ -57,15 +57,11 @@ jobs:
     buildConfiguration: 'Release'
 
   steps:
-  - script: |
-      sudo apt-get install mono-complete
-      sudo apt-get install libcurl3
-    displayName: Install mono-complete and libcurl3
-  - task: gittools.gitversion.gitversion-task.GitVersion@4
-    displayName: GitVersion
-    inputs:
-      updateAssemblyInfo: true
-      preferBundledVersion: false
+ # - task: gittools.gitversion.gitversion-task.GitVersion@4
+ #   displayName: GitVersion
+ #   inputs:
+ #     updateAssemblyInfo: true
+ #     preferBundledVersion: false
   - script: dotnet restore Spritey.sln
     displayName: Restore Spritey.sln
   - script: dotnet build ./src/Spritey/Spritey.csproj
