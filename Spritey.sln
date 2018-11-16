@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spritey", "src\Spritey\Spritey.csproj", "{5F13E2F9-AFDB-4176-8452-9835BF87250E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spritey", "src\Spritey\Spritey.csproj", "{1630085E-AA4D-4158-84FF-8897C2518463}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spritey.Test", "tests\Spritey.Test\Spritey.Test.csproj", "{B108D4F4-4885-4F08-91DE-E0F0E419266D}"
 EndProject
@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		.gitignore = .gitignore
-		appveyor.yml = appveyor.yml
+		azure-pipelines.yml = azure-pipelines.yml
 		.vscode\launch.json = .vscode\launch.json
 		LICENSE = LICENSE
 		README.md = README.md
@@ -30,10 +30,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5F13E2F9-AFDB-4176-8452-9835BF87250E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5F13E2F9-AFDB-4176-8452-9835BF87250E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5F13E2F9-AFDB-4176-8452-9835BF87250E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5F13E2F9-AFDB-4176-8452-9835BF87250E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1630085E-AA4D-4158-84FF-8897C2518463}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1630085E-AA4D-4158-84FF-8897C2518463}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1630085E-AA4D-4158-84FF-8897C2518463}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1630085E-AA4D-4158-84FF-8897C2518463}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B108D4F4-4885-4F08-91DE-E0F0E419266D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B108D4F4-4885-4F08-91DE-E0F0E419266D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B108D4F4-4885-4F08-91DE-E0F0E419266D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -43,7 +43,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{5F13E2F9-AFDB-4176-8452-9835BF87250E} = {8C1C7CA9-0F75-4056-96B1-8932F656F644}
+		{1630085E-AA4D-4158-84FF-8897C2518463} = {8C1C7CA9-0F75-4056-96B1-8932F656F644}
 		{B108D4F4-4885-4F08-91DE-E0F0E419266D} = {74F351E4-ED89-4128-9F93-F11CEC4E3764}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

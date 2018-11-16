@@ -13,13 +13,21 @@ jobs:
     buildConfiguration: 'Release'
 
   steps:
+  #- script: |
+  #    pwsh -c '.\UpdateBuildVersion.ps1'
+  #  displayName: 'Build and Test'
+  - task: gittools.gitversion.gitversion-task.GitVersion@4
+    displayName: GitVersion
+    inputs:
+      updateAssemblyInfo: true
+      preferBundledVersion: false
   - task: SonarSource.sonarqube.15B84CA1-B62F-4A2A-A403-89B77A063157.SonarQubePrepare@4
     displayName: 'Prepare analysis on SonarQube'
     inputs:
       SonarQube: SonarQube.io
       projectKey: 'BrandonBoone_Spritey'
       projectName: Spritey
-      projectVersion: '$(AssemblyVersion)'
+      projectVersion: '$(GitVersion.SemVer)'
       extraProperties: |
         sonar.organization=brandonboone-github
         sonar.branch.name=$(Build.SourceBranchName)
@@ -49,6 +57,17 @@ jobs:
     buildConfiguration: 'Release'
 
   steps:
+  #- script: |
+  #    curl <a class="vglnk" href="https://packages.microsoft.com/keys/microsoft.asc" rel="nofollow"><span>https</span><span>://</span><span>packages</span><span>.</span><span>microsoft</span><span>.</span><span>com</span><span>/</span><span>keys</span><span>/</span><span>microsoft</span><span>.</span><span>asc</span></a> | sudo apt-key add -
+  #    curl <a class="vglnk" href="https://packages.microsoft.com/config/ubuntu/16.04/prod.list" rel="nofollow"><span>https</span><span>://</span><span>packages</span><span>.</span><span>microsoft</span><span>.</span><span>com</span><span>/</span><span>config</span><span>/</span><span>ubuntu</span><span>/</span><span>16</span><span>.</span><span>04</span><span>/</span><span>prod</span><span>.</span><span>list</span></a> | sudo tee /etc/apt/sources.list.d/microsoft.list
+  #    sudo apt-get update
+  #    sudo apt-get install -y powershell
+  #  displayName: 'Install PowerShell Core'
+  - task: gittools.gitversion.gitversion-task.GitVersion@4
+    displayName: GitVersion
+    inputs:
+      updateAssemblyInfo: true
+      preferBundledVersion: false
   - script: dotnet restore Spritey.sln
     displayName: Restore Spritey.sln
   - script: dotnet build ./src/Spritey/Spritey.csproj
