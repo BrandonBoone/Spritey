@@ -25,6 +25,35 @@ The end goal of this project is to produce both a .NET Core NuGet library for co
 |-------------|:----------:|:-----------:|:-----------:|
 |**Windows & Linux**  |[![Build Status](https://dev.azure.com/Spritey/Spritey/_apis/build/status/Spritey)](https://dev.azure.com/Spritey/Spritey/_build/latest?definitionId=1)|[![codecov](https://codecov.io/gh/BrandonBoone/Spritey/branch/master/graph/badge.svg)](https://codecov.io/gh/BrandonBoone/Spritey)|[![sonarcloud](https://sonarcloud.io/api/project_badges/measure?project=BrandonBoone_Spritey&metric=alert_status)](https://sonarcloud.io/dashboard?id=BrandonBoone_Spritey)|
 
+
+### Example:
+
+#### Input
+
+![image1](https://raw.githubusercontent.com/BrandonBoone/Spritey/master/tests/Spritey.Test/TestData/TestSet4/icons8-lion-statue-48.png)
+![image2](https://raw.githubusercontent.com/BrandonBoone/Spritey/master/tests/Spritey.Test/TestData/TestSet4/icons8-news-48.png)
+![image3](https://raw.githubusercontent.com/BrandonBoone/Spritey/master/tests/Spritey.Test/TestData/TestSet4/icons8-padlock-100.png)
+![image4](https://raw.githubusercontent.com/BrandonBoone/Spritey/master/tests/Spritey.Test/TestData/TestSet4/icons8-public-30.png)
+![image5](https://raw.githubusercontent.com/BrandonBoone/Spritey/master/tests/Spritey.Test/TestData/TestSet4/icons8-public-transportation-48.png)
+![image6](https://raw.githubusercontent.com/BrandonBoone/Spritey/master/tests/Spritey.Test/TestData/TestSet4/icons8-roundabout-48.png)
+![image7](https://raw.githubusercontent.com/BrandonBoone/Spritey/master/tests/Spritey.Test/TestData/TestSet4/icons8-workstation-40.png)
+
+#### Output
+
+![image1](https://raw.githubusercontent.com/BrandonBoone/Spritey/master/tests/Spritey.Test/TestData/SnapShots/TestSet4/sprite.png)
+
+```css
+.img-sprite{background: transparent url(sprite.png);}
+i.img-sprite{display:inline-block;}
+.img-sprite.img-icons8-padlock-100{height:100px;width:100px;background-position: -0px -0px;}
+.img-sprite.img-icons8-lion-statue-48{height:48px;width:48px;background-position: -0px -100px;}
+.img-sprite.img-icons8-news-48{height:48px;width:48px;background-position: -48px -100px;}
+.img-sprite.img-icons8-public-transportation-48{height:48px;width:48px;background-position: -0px -148px;}
+.img-sprite.img-icons8-roundabout-48{height:48px;width:48px;background-position: -48px -148px;}
+.img-sprite.img-icons8-workstation-40{height:40px;width:40px;background-position: -0px -196px;}
+.img-sprite.img-icons8-public-30{height:30px;width:30px;background-position: -40px -196px;}
+```
+
 ### API
 
 #### Option 1
