@@ -78,13 +78,42 @@
         public string Filename { get; private set; }
 
         /// <summary>
+        /// Gets a list of static ImageInfo objects from the specified image directory path.
+        /// </summary>
+        /// <param name="sImageDirectoryPath">The image directory path.</param>
+        /// <returns>The list of <see cref="ImageInfo"/> from the specified image directory path</returns>
+        public static IEnumerable<ImageInfo> GetStaticFromImageDirectory(string sImageDirectoryPath)
+        {
+            IList<ImageInfo> list = GetFromImageDirectory(sImageDirectoryPath);
+
+            for (int i = list.Count - 1; i >= 0; --i)
+            {
+                if (list[i].IsAnimated)
+                {
+                    list[i].Dispose();
+                    list.RemoveAt(i);
+                }
+            }
+
+            return list;
+        }
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            this.Img.Dispose();
+        }
+
+        /// <summary>
         /// Gets a list of filenames from the specified image directory path.
         /// </summary>
         /// <param name="sImageDirectoryPath">The image directory path.</param>
         /// <returns>The list of filenames from the specified directory path</returns>
-        public static List<string> GetFilenamesFromImageDirectory(string sImageDirectoryPath)
+        private static List<string> GetFilenamesFromImageDirectory(string sImageDirectoryPath)
         {
-            List<string> list = new List<string>();
+            var list = new List<string>();
 
             if (Directory.Exists(sImageDirectoryPath))
             {
@@ -106,9 +135,9 @@
         /// </summary>
         /// <param name="sImageDirectoryPath">The image directory path.</param>
         /// <returns>The list of <see cref="ImageInfo"/> from the specified image directory path</returns>
-        public static List<ImageInfo> GetFromImageDirectory(string sImageDirectoryPath)
+        private static IList<ImageInfo> GetFromImageDirectory(string sImageDirectoryPath)
         {
-            List<ImageInfo> list = new List<ImageInfo>();
+            var list = new List<ImageInfo>();
 
             if (Directory.Exists(sImageDirectoryPath))
             {
@@ -117,56 +146,6 @@
             }
 
             return list;
-        }
-
-        /// <summary>
-        /// Gets a list of static ImageInfo objects from the specified image directory path.
-        /// </summary>
-        /// <param name="sImageDirectoryPath">The image directory path.</param>
-        /// <returns>The list of <see cref="ImageInfo"/> from the specified image directory path</returns>
-        public static List<ImageInfo> GetStaticFromImageDirectory(string sImageDirectoryPath)
-        {
-            List<ImageInfo> list = GetFromImageDirectory(sImageDirectoryPath);
-
-            for (int i = list.Count - 1; i >= 0; --i)
-            {
-                if (list[i].IsAnimated)
-                {
-                    list[i].Dispose();
-                    list.RemoveAt(i);
-                }
-            }
-
-            return list;
-        }
-
-        /// <summary>
-        /// Gets a list of animated ImageInfo objects from the specified image directory path.
-        /// </summary>
-        /// <param name="sImageDirectoryPath">The image directory path.</param>
-        /// <returns>The list of <see cref="ImageInfo"/> from the specified image directory path</returns>
-        public static List<ImageInfo> GetAnimatedFromImageDirectory(string sImageDirectoryPath)
-        {
-            List<ImageInfo> list = GetFromImageDirectory(sImageDirectoryPath);
-
-            for (int i = list.Count - 1; i >= 0; --i)
-            {
-                if (!list[i].IsAnimated)
-                {
-                    list[i].Dispose();
-                    list.RemoveAt(i);
-                }
-            }
-
-            return list;
-        }
-
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        public void Dispose()
-        {
-            this.Img.Dispose();
         }
     }
 }

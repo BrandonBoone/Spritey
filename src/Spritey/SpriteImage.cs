@@ -7,7 +7,7 @@
     /// <summary>
     /// Holds the Sprite image as a <see cref="MemoryStream"/> and a Base64 encoded string
     /// </summary>
-    public abstract class SpriteImage : IDisposable
+    public abstract class SpriteImage : ISpriteImage
     {
         private readonly MemoryStream imgStream;
 

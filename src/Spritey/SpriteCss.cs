@@ -58,7 +58,7 @@
         /// </summary>
         /// <param name="imageData">A blueprint detailing the layout of the Sprite Image</param>
         /// <returns>A string of css classes</returns>
-        private static string GenerateClassString(List<SpriteData> imageData) =>
+        private static string GenerateClassString(IEnumerable<ISpriteData> imageData) =>
             imageData.Aggregate(
                 new StringBuilder(),
                 (builder, data) => builder.Append(

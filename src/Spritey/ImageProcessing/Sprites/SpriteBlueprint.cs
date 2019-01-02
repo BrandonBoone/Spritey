@@ -9,7 +9,7 @@
     /// <summary>
     /// Represents the contents of a sprite image.
     /// </summary>
-    public class SpriteBlueprint : ISprite, IDisposable
+    public class SpriteBlueprint : ISpriteBlueprint
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SpriteBlueprint"/> class.
@@ -63,7 +63,7 @@
         /// <remarks>
         /// Animated images will be skipped. These images will be missing from the blueprint.
         /// </remarks>
-        public static SpriteBlueprint GetFromImageDirectory(string sImageDirectoryPath, Orientation layout = Orientation.Optimal)
+        public static ISpriteBlueprint GetFromImageDirectory(string sImageDirectoryPath, Orientation layout = Orientation.Optimal)
         {
             if (Directory.Exists(sImageDirectoryPath))
             {
