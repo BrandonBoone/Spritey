@@ -89,7 +89,7 @@
             byte B = color.B;
 #pragma warning restore SA1312 // Variable names should begin with lower-case letter
 
-            MemoryStream fout = new MemoryStream((int)gifStream.Length);
+            var fout = new MemoryStream((int)gifStream.Length);
             int count = 0;
             byte[] buf = new byte[256];
             byte transparentIdx = 0;
@@ -125,7 +125,7 @@
             }
 
             // Read the colors in the color table.
-            for (var i = colorTableSize; i != 0; i--)
+            for (int i = colorTableSize; i != 0; i--)
             {
                 gifStream.Read(buf, 0, 3); // pull off three bytes for R, G, B
 

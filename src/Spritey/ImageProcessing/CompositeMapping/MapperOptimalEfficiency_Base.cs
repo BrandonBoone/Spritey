@@ -117,7 +117,7 @@
             lowestFreeHeightDeficitTallestRightFlushedImage = 0;
             this.Canvas.SetCanvasDimensions(maxWidth, maxHeight);
 
-            T spriteInfo = new T();
+            var spriteInfo = new T();
             int heightHighestRightFlushedImage = 0;
             int furthestRightEdge = 0;
 
@@ -135,7 +135,7 @@
                     break;
                 }
 
-                MappedImageInfo imageLocation = new MappedImageInfo(xOffset, yOffset, image);
+                var imageLocation = new MappedImageInfo(xOffset, yOffset, image);
                 spriteInfo.AddMappedImage(imageLocation);
 
                 // Update the lowestFreeHeightDeficitTallestRightFlushedImage

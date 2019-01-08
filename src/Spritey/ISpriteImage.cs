@@ -8,12 +8,12 @@
     public interface ISpriteImage : IDisposable
     {
         /// <summary>
-        /// Gets or sets the Base64 encoded version of the Sprite
+        /// Gets the Base64 encoded version of the Sprite
         /// </summary>
         string AsBase64 { get; }
 
         /// <summary>
-        /// Gets or sets the ByteCount of the Base64 encoded Sprite
+        /// Gets the ByteCount of the Base64 encoded Sprite
         /// </summary>
         int Length { get; }
 

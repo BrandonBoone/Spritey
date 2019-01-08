@@ -55,10 +55,11 @@
         /// <returns>A <see cref="MemoryStream"/> representing the GIF</returns>
         public static MemoryStream ConvertToGifStream(Image<Rgba32> image)
         {
+            Image<Rgba32> mutatedImage = image.Clone();
             var streamIn = new MemoryStream();
             var transparent = new Rgba32(0, 255, 0, 0); // transparent color. BUG here if used in source image. TODO: Find a transparent color not in the Color Pallete?
-            image.ReplaceTransparentColor(transparent);
-            image.Save(streamIn, new GifEncoder() { ColorTableMode = GifColorTableMode.Global, Quantizer = KnownQuantizers.Wu });
+            mutatedImage.ReplaceTransparentColor(transparent);
+            mutatedImage.Save(streamIn, new GifEncoder() { ColorTableMode = GifColorTableMode.Global, Quantizer = KnownQuantizers.Wu });
             streamIn.Seek(0, SeekOrigin.Begin);
             return Utilities.MakeTransparentGif(streamIn, transparent);
         }

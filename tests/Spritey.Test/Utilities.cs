@@ -19,13 +19,13 @@ namespace Spritey.Test
         public static string GetTestDataFolder(string testDataFolder)
         {
             string startupPath = ApplicationEnvironment.ApplicationBasePath;
-            var pathItems = startupPath.Split(Path.DirectorySeparatorChar);
-            var pos = pathItems.Reverse().ToList().FindIndex(x => string.Equals("bin", x));
-            string projectPath = String.Join(Path.DirectorySeparatorChar.ToString(), pathItems.Take(pathItems.Length - pos - 1));
+            string[] pathItems = startupPath.Split(Path.DirectorySeparatorChar);
+            int pos = pathItems.Reverse().ToList().FindIndex(x => string.Equals("bin", x));
+            string projectPath = string.Join(Path.DirectorySeparatorChar.ToString(), pathItems.Take(pathItems.Length - pos - 1));
             return Path.Combine(projectPath, "TestData", testDataFolder);
         }
 
-        const int BYTES_TO_READ = sizeof(Int64);
+        const int BYTES_TO_READ = sizeof(long);
 
 
         // https://stackoverflow.com/a/1359947/402706

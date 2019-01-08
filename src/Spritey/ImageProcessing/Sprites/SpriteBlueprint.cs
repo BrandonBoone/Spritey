@@ -59,7 +59,7 @@
         /// <returns>
         /// A SpriteBlueprint object which contains the optimal X/Y coordinates of each image
         /// within a larger composite image (a Sprite).
-        /// </returns>   
+        /// </returns>
         /// <remarks>
         /// Animated images will be skipped. These images will be missing from the blueprint.
         /// </remarks>
