@@ -21,16 +21,14 @@ jobs:
     inputs:
       updateAssemblyInfo: true
       preferBundledVersion: false
-  - task: SonarSource.sonarqube.15B84CA1-B62F-4A2A-A403-89B77A063157.SonarQubePrepare@4
-    displayName: 'Prepare analysis on SonarQube'
+  - task: SonarSource.sonarcloud.14d9cde6-c1da-4d55-aa01-2965cd301255.SonarCloudPrepare@1
+    displayName: 'Prepare analysis on SonarCloud'
     inputs:
-      SonarQube: SonarQube.io
+      SonarCloud: SonarCloud.io
+      organization: 'brandonboone-github'
       projectKey: 'BrandonBoone_Spritey'
       projectName: Spritey
       projectVersion: '$(GitVersion.SemVer)'
-      extraProperties: |
-        sonar.organization=brandonboone-github
-        sonar.branch.name=$(Build.SourceBranchName)
   - script: dotnet restore Spritey.sln
     displayName: Restore Spritey.sln
   - script: dotnet build ./src/Spritey/Spritey.csproj
@@ -45,7 +43,7 @@ jobs:
     displayName: Run Tests and Generate Coverage Report
   - script: tests\CodeCoverage\packages\Codecov.1.1.0\tools\codecov.exe -f Spritey.Coverage.xml -t $(CODECOV_TOKEN)
     displayName: Publish Coverage Results to CodeCov
-  - task: SonarSource.sonarqube.6D01813A-9589-4B15-8491-8164AEB38055.SonarQubeAnalyze@4
+  - task: SonarSource.sonarcloud.ce096e50-6155-4de8-8800-4221aaeed4a1.SonarCloudAnalyze@1
     displayName: 'Run Code Analysis'
 
 - job: Linux
