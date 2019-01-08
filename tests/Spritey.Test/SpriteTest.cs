@@ -29,7 +29,7 @@ namespace Spritey.Test.ImageProcessing.Sprites
             string path = Utilities.GetTestDataFolder("TestSet1");
             this.output.WriteLine("path is {0}", path);
 
-            using (var blueprint = SpriteBlueprint.GetFromImageDirectory(path))
+            using (ISpriteBlueprint blueprint = SpriteBlueprint.GetFromImageDirectory(path))
             using (var sprite = new Sprite(blueprint))
             {
                 string imagesToProcess = sprite.ImageData.Aggregate("", (prev, next) => $"{(prev != "" ? $"{prev}," : "")}{next.Name}");

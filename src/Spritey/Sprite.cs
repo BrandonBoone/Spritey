@@ -5,6 +5,8 @@
     using System.IO;
     using System.Linq;
     using System.Text.RegularExpressions;
+    using SixLabors.ImageSharp;
+    using SixLabors.ImageSharp.PixelFormats;
     using Spritey.ImageProcessing.CompositeMapping;
     using Spritey.ImageProcessing.Sprites;
 
@@ -15,14 +17,19 @@
     {
         private readonly HashSet<char> invalidFileNameChars = new HashSet<char>(Path.GetInvalidFileNameChars());
 
+        private readonly Image<Rgba32> composedImage = null;
+        private ISpriteImage gif;
+        private ISpriteImage png;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Sprite"/> class.
         /// </summary>
         /// <param name="directory">The directory of images to process</param>
         public Sprite(string directory)
         {
-            using (SpriteBlueprint blueprint = SpriteBlueprint.GetFromImageDirectory(directory))
+            using (ISpriteBlueprint blueprint = SpriteBlueprint.GetFromImageDirectory(directory))
             {
+                this.composedImage = SpriteGenerator.ComposeSpriteImage(blueprint);
                 this.Init(blueprint);
             }
         }
@@ -31,8 +38,11 @@
         /// Initializes a new instance of the <see cref="Sprite"/> class.
         /// </summary>
         /// <param name="blueprint">The <see cref="SpriteBlueprint"/> of pre-processed images</param>
-        public Sprite(SpriteBlueprint blueprint)
-            => this.Init(blueprint);
+        public Sprite(ISpriteBlueprint blueprint)
+        {
+            this.composedImage = SpriteGenerator.ComposeSpriteImage(blueprint);
+            this.Init(blueprint);
+        }
 
         /// <summary>
         /// Gets the width of the composite image in pixels
@@ -50,19 +60,40 @@
         public Guid Id { get; private set; } = Guid.NewGuid();
 
         /// <summary>
-        /// Gets collection of <see cref="SpriteData"/>.
+        /// Gets collection of <see cref="ISpriteData"/>.
         /// </summary>
-        public List<SpriteData> ImageData { get; private set; } = new List<SpriteData>();
+        public List<ISpriteData> ImageData { get; private set; } = new List<ISpriteData>();
 
         /// <summary>
         /// Gets the generated Png version of the Sprite
         /// </summary>
-        public SpriteImage Png { get; private set; }
+        public ISpriteImage Png
+        {
+            get
+            {
+                if (this.png == null)
+                {
+                    this.png = new SpritePng(this.composedImage);
+                }
+
+                return this.png;
+            }
+        }
 
         /// <summary>
         /// Gets the generated Gif version of the Sprite
         /// </summary>
-        public SpriteImage Gif { get; private set; }
+        public ISpriteImage Gif {
+            get
+            {
+                if (this.gif == null)
+                {
+                    this.gif = new SpriteGif(this.composedImage);
+                }
+
+                return this.gif;
+            }
+        }
 
         /// <summary>
         /// Save the sprite in  <see cref="SpriteFormat.Gif"/> and <see cref="SpriteFormat.Png"/> embedded and reference formats
@@ -106,7 +137,7 @@
                 {
                     this.Gif.Save(Path.Combine(directory, $"{name}.gif"));
                 }
-                else
+                else if (fmt == SpriteFormat.Png)
                 {
                     this.Png.Save(Path.Combine(directory, $"{name}.png"));
                 }
@@ -122,14 +153,19 @@
         /// <inheritdoc/>
         public void Dispose()
         {
-            if (this.Gif != null)
+            if (this.composedImage != null)
             {
-                this.Gif.Dispose();
+                this.composedImage.Dispose();
             }
 
-            if (this.Png != null)
+            if (this.gif != null)
             {
-                this.Png.Dispose();
+                this.gif.Dispose();
+            }
+
+            if (this.png != null)
+            {
+                this.png.Dispose();
             }
         }
 
@@ -145,20 +181,14 @@
         private string CleanCSSName(string name)
             => new Regex(@"[!""#$%&'()\*\+,\./:;<=>\?@\[\\\]^`{\|}~ ]").Replace(name, string.Empty);
 
-        private void Init(SpriteBlueprint blueprint)
+        private void Init(ISpriteBlueprint blueprint)
         {
             this.Width = blueprint.Width;
             this.Height = blueprint.Height;
 
-            using (var image = SpriteGenerator.ComposeSpriteImage(blueprint))
-            {
-                this.Png = new SpritePng(image);
-                this.Gif = new SpriteGif(image);
-            }
-
             foreach (IMappedImageInfo minfo in blueprint.MappedImages)
             {
-                ImageInfo info = (ImageInfo)minfo.ImageInfo;
+                var info = (ImageInfo)minfo.ImageInfo;
 
                 this.ImageData.Add(new SpriteData()
                 {

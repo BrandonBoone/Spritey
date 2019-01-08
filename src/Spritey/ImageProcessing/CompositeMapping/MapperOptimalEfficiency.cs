@@ -69,7 +69,7 @@
 
             while (canvasMaxWidth >= widthWidestImage)
             {
-                CanvasStats canvasStats = new CanvasStats();
+                var canvasStats = new CanvasStats();
                 T spriteInfo =
                     this.MappingRestrictedBox(imageInfosHighestFirst, canvasMaxWidth, canvasMaxHeight, canvasStats, out int lowestFreeHeightDeficitTallestRightFlushedImage);
 
